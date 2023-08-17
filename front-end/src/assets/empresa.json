@@ -1,0 +1,7 @@
+[
+  { "_id": "1", "nomeFantasia": "Amanda e Cauã Pizzaria Ltda", "cnpj": "58.935.915/0001-79", "cep": "13075-576", "logradouro": "Praça Octávio da Silva Leme", "numero": "326", "complemento": "Jardim Nossa Senhora Auxiliadora", "telefone": "(19) 3686-4466" },
+  { "_id": "2", "nomeFantasia": "Alessandra e Osvaldo Filmagens ME", "cnpj": "40.041.761/0001-06", "cep": "82640-450", "logradouro": "Rua Rei Salomão", "numero": "634", "complemento": "Santa Cândida", "telefone": "(41) 3986-1880" },
+  { "_id": "3", "nomeFantasia": "Nelson e Juan Limpeza Ltda", "cnpj": "18.964.829/0001-70", "cep": "83604-050", "logradouro": "Rua Rio de Janeiro", "numero": "553", "complemento": "Jardim Esmeralda", "telefone": "(41) 3715-9089" },
+  { "_id": "4", "nomeFantasia": "Carolina e André Limpeza ME", "cnpj": "74.973.160/0001-53", "cep": "85869-340", "logradouro": "Alameda Ubatã", "numero": "100", "complemento": "Jardim Lancaster II", "telefone": "(45) 2528-1663" },
+  { "_id": "5", "nomeFantasia": "Isabelly e Julia Pizzaria ME", "cnpj": "51.097.723/0001-91", "cep": "84064-470", "logradouro": "Rua Rio Solimões", "numero": "905", "complemento": "Chapada", "telefone": "(42) 2961-9744" }
+]
