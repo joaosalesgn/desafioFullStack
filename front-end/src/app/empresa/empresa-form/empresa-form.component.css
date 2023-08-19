@@ -1,0 +1,22 @@
+mat-card {
+  max-width: 50%;
+  margin: 2em auto;
+  text-align: center;
+}
+
+.toolbar-form {
+  margin-bottom: 10px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.min-width {
+  width: 100%;
+  min-width: 350px;
+}
+
+.mdc-button {
+  margin: 0 0 0 7px;
+}

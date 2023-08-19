@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, first, delay } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 
 import { Empresa } from '../model/empresa';
 
@@ -9,14 +9,17 @@ import { Empresa } from '../model/empresa';
 })
 export class EmpresaService {
 
-  private readonly API = '/assets/empresa.json'
+  private readonly API = 'api/empresa'
 
   constructor(private httpClient: HttpClient) { }
 
-  dados() {
+  list() {
     return this.httpClient.get<Empresa[]>(this.API).pipe(
-      first(),
-      tap(empresas => console.log(empresas))
+      first()
     );
+  }
+
+  save(empresa: Partial<Empresa>) {
+    return this.httpClient.post<Empresa>(this.API, empresa);
   }
 }

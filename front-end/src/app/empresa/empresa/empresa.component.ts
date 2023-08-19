@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { catchError, Observable, of } from 'rxjs';
+import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 
 import { Empresa } from '../model/empresa';
 import { EmpresaService } from './../services/empresa.service';
-import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-empresa',
@@ -15,13 +16,15 @@ export class EmpresaComponent implements OnInit {
 
   empresas$: Observable<Empresa[]>;
   // Colunas que serão mostradas na tabela
-  displayedColumns = ['_id', 'nomeFantasia', 'cnpj', 'logradouro', 'telefone']
+  displayedColumns = ['id', 'nomeFantasia', 'cnpj', 'logradouro', 'telefone', 'actions']
 
   constructor(
     private empresaService: EmpresaService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
-    this.empresas$ = this.empresaService.dados().pipe(
+    this.empresas$ = this.empresaService.list().pipe(
       catchError(error => {
         this.onError('Erro ao carregar as Empresas.')
         // retornando um Observable vazio "of" para ter alguma lista generica e parar o erro na tela
@@ -37,5 +40,9 @@ export class EmpresaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  onAdd() {
+    this.router.navigate(['new'], { relativeTo: this.route })
   }
 }

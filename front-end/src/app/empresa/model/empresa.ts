@@ -1,5 +1,5 @@
 export interface Empresa {
-  _id: number;
+  id: number;
   nomeFantasia: string;
   cnpj: string;
   cep: string;
