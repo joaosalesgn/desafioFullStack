@@ -1,0 +1,56 @@
+<mat-table [dataSource]="empresas">
+
+  <!-- ID Column -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> Código </mat-header-cell>
+    <mat-cell *matCellDef="let empresa"> {{ empresa.id }} </mat-cell>
+  </ng-container>
+
+  <!-- Nome Column -->
+  <ng-container matColumnDef="nomeFantasia">
+    <mat-header-cell *matHeaderCellDef> Nome Fantasia </mat-header-cell>
+    <mat-cell *matCellDef="let empresa"> {{ empresa.nomeFantasia }}
+    </mat-cell>
+  </ng-container>
+
+  <!-- CNPJ Column -->
+  <ng-container matColumnDef="cnpj">
+    <mat-header-cell *matHeaderCellDef> CNPJ </mat-header-cell>
+    <mat-cell *matCellDef="let empresa"> {{ empresa.cnpj }} </mat-cell>
+  </ng-container>
+
+  <!-- Rua Column -->
+  <ng-container matColumnDef="logradouro">
+    <mat-header-cell *matHeaderCellDef> Rua </mat-header-cell>
+    <mat-cell *matCellDef="let empresa"> {{ empresa.logradouro }}, {{ empresa.numero }}, {{ empresa.complemento
+      }} </mat-cell>
+  </ng-container>
+
+  <!-- Telefone Column -->
+  <ng-container matColumnDef="telefone">
+    <mat-header-cell *matHeaderCellDef> Telefone </mat-header-cell>
+    <mat-cell *matCellDef="let empresa"> {{ empresa.telefone }} </mat-cell>
+  </ng-container>
+
+  <!-- Ações Column -->
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef class="action-column-header">
+      <button (click)="onAdd()" mat-mini-fab color="accent" aria-label="Adicionar uma empresa">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let empresa" class="action-column">
+      <button (click)="onEdit(empresa)" mat-icon-button color="primary" aria-label="Editar empresa">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <button (click)="onDelete(empresa)" mat-icon-button color="warn" aria-label="Excluir empresa">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

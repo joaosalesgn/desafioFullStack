@@ -4,15 +4,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppMaterialModule } from '../shared/app-material/app-material.module';
 import { SharedModule } from '../shared/shared.module';
-import { EmpresaFormComponent } from './empresa-form/empresa-form.component';
+import { EmpresaFormComponent } from './containers/empresa-form/empresa-form.component';
 import { EmpresaRoutingModule } from './empresa-routing.module';
-import { EmpresaComponent } from './empresa/empresa.component';
+import { EmpresaComponent } from './containers/empresa/empresa.component';
+import { EmpresaListComponent } from './components/empresa-list/empresa-list.component';
+import { ConfirmationDialogComponent } from '../shared/components/confirmation-dialog/confirmation-dialog.component';
 
 
 @NgModule({
   declarations: [
     EmpresaComponent,
-    EmpresaFormComponent
+    EmpresaFormComponent,
+    EmpresaListComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     CommonModule,
