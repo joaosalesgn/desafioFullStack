@@ -4,7 +4,11 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.desafiofullstack.backend.enums.Pessoa;
+import com.desafiofullstack.backend.enums.converters.PessoaConverter;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +21,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Empresa {
+public class Fornecedor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,12 +30,20 @@ public class Empresa {
     @NotBlank
     @NotNull
     @Column(length = 150, nullable = false)
-    private String nomeFantasia;
+    private String nome;
+
+    @NotNull
+    @Column(length = 100)
+    @Convert(converter = PessoaConverter.class)
+    private Pessoa pessoa;
 
     @NotNull
     @Length(max = 18, min = 14)
     @Column(length = 50, nullable = false)
-    private String cnpj;
+    private String documento;
+
+    @Column(length = 100)
+    private String email;
 
     @Column(length = 10)
     private String cep;
@@ -48,6 +60,6 @@ public class Empresa {
     @Column(length = 50)
     private String telefone;
 
-    @ManyToMany(mappedBy = "empresas", fetch = FetchType.EAGER)
-    private List<Fornecedor> fornecedores;
+    @ManyToMany(mappedBy = "fornecedores", fetch = FetchType.EAGER)
+    private List<Empresa> empresas;
 }
