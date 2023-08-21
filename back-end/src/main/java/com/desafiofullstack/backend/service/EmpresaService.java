@@ -37,7 +37,7 @@ public class EmpresaService {
         return empresaRepository.save(empresa);
     }
 
-    public Optional<Empresa> update(@NotNull @Positive Long codigoEmpresa, @Valid Empresa empresa) {
+    public Empresa update(@NotNull @Positive Long codigoEmpresa, @Valid Empresa empresa) {
         return empresaRepository.findById(codigoEmpresa)
             .map(response -> {
                 response.setNomeFantasia(empresa.getNomeFantasia());
@@ -48,15 +48,12 @@ public class EmpresaService {
                 response.setComplemento(empresa.getComplemento());
                 response.setTelefone(empresa.getTelefone());
                 return empresaRepository.save(response);
-            });
+            }).orElseThrow(() -> new RecordNotFoundException(codigoEmpresa));
     }
 
-    public Boolean delete(@PathVariable("id") @NotNull @Positive Long codigoEmpresa) {
-        return empresaRepository.findById(codigoEmpresa)
-            .map(response -> {
-                empresaRepository.deleteById(codigoEmpresa);
-                return true;
-            })
-            .orElse(false);
+    public void delete(@PathVariable("id") @NotNull @Positive Long codigoEmpresa) {
+
+        empresaRepository.delete(empresaRepository.findById(codigoEmpresa)
+                                    .orElseThrow(() -> new RecordNotFoundException(codigoEmpresa)));
     }
 }

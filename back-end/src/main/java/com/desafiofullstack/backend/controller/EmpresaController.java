@@ -50,17 +50,13 @@ public class EmpresaController {
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<Empresa> update(@PathVariable("id") @NotNull @Positive Long codigoEmpresa, @RequestBody Empresa empresa) {
-        return empresaService.update(codigoEmpresa, empresa)
-            .map(response -> ResponseEntity.ok().body(response))
-            .orElse(ResponseEntity.notFound().build());
+    public Empresa update(@PathVariable("id") @NotNull @Positive Long codigoEmpresa, @RequestBody Empresa empresa) {
+        return empresaService.update(codigoEmpresa, empresa);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") @NotNull @Positive Long codigoEmpresa) {
-        if (Boolean.TRUE.equals(empresaService.delete(codigoEmpresa))) {
-            return ResponseEntity.noContent().<Void>build();
-        }
-        return ResponseEntity.notFound().<Void>build();
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("id") @NotNull @Positive Long codigoEmpresa) {
+        empresaService.delete(codigoEmpresa);
     }
 }
