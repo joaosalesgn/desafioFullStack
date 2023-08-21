@@ -3,7 +3,6 @@ package com.desafiofullstack.backend.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.desafiofullstack.backend.model.Empresa;
+import com.desafiofullstack.backend.dto.EmpresaDTO;
 import com.desafiofullstack.backend.service.EmpresaService;
 
 import jakarta.validation.Valid;
@@ -34,24 +33,24 @@ public class EmpresaController {
     }
 
     @GetMapping
-    public List<Empresa> listEmpresas() {
+    public List<EmpresaDTO> listEmpresas() {
         return empresaService.listEmpresas();
     }
 
     @GetMapping("/{id}")
-    public Empresa findById(@PathVariable("id")  @NotNull @Positive Long codigoEmpresa) {
+    public EmpresaDTO findById(@PathVariable("id")  @NotNull @Positive Long codigoEmpresa) {
         return empresaService.findById(codigoEmpresa);
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Empresa create(@RequestBody @Valid Empresa empresa) {
-        return empresaService.create(empresa);
+    public EmpresaDTO create(@RequestBody @Valid EmpresaDTO empresaDTO) {
+        return empresaService.create(empresaDTO);
     }
     
     @PutMapping("/{id}")
-    public Empresa update(@PathVariable("id") @NotNull @Positive Long codigoEmpresa, @RequestBody Empresa empresa) {
-        return empresaService.update(codigoEmpresa, empresa);
+    public EmpresaDTO update(@PathVariable("id") @NotNull @Positive Long codigoEmpresa, @RequestBody EmpresaDTO empresaDTO) {
+        return empresaService.update(codigoEmpresa, empresaDTO);
     }
 
     @DeleteMapping("/{id}")
